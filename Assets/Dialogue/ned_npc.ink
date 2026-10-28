@@ -1,0 +1,5 @@
+WHERE THE HELL DID MY TRUCK GO #speaker:RedneckNed #audio:ned
+
+I NEED IT.
+
+RELEASE MEEEEEEEEEEE

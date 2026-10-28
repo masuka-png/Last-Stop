@@ -100,6 +100,9 @@ namespace EasyPeasyFirstPersonController
         [Header("Debug")]
         public bool currentStateDebug = true;
 
+        // Dialogue integration
+        private bool wasInDialogue;
+
         void OnGUI()
         {
             if (currentState != null && Application.isEditor && currentStateDebug)
@@ -128,10 +131,27 @@ namespace EasyPeasyFirstPersonController
 
         private void Update()
         {
+            // Freeze the player while dialogue is playing
+            DialogueManager dm = DialogueManager.GetInstance();
+            bool inDialogue = dm != null && dm.dialogueIsPlaying;
+
+            // Only touch the cursor when the dialogue state changes
+            if (inDialogue != wasInDialogue)
+            {
+                wasInDialogue = inDialogue;
+                Cursor.lockState = inDialogue ? CursorLockMode.None : CursorLockMode.Locked;
+                Cursor.visible = inDialogue;
+            }
+
+            if (inDialogue)
+                return; // no movement, look, or visuals during dialogue
+
             if (currentLedgeCooldown > 0)
                 currentLedgeCooldown -= Time.deltaTime;
 
-            isGrounded = characterController.isGrounded || Physics.CheckSphere(groundCheck.position, characterController.radius * 0.9f, groundMask, QueryTriggerInteraction.Ignore);
+            bool touchingGround = groundCheck != null &&
+                Physics.CheckSphere(groundCheck.position, characterController.radius * 0.9f, groundMask, QueryTriggerInteraction.Ignore);
+            isGrounded = characterController.isGrounded || touchingGround;
 
             currentState.UpdateState();
             HandleRotation();
@@ -180,32 +200,32 @@ namespace EasyPeasyFirstPersonController
 
             // Smoothly transition the actual camera Y to include the bob offset
             float desiredY = originalCamY + targetBobOffset;
-            
+
             // Apply Camera Shake (Realistic Directional Impact)
             if (cameraShakeTimer > 0)
             {
                 cameraShakeTimer -= Time.deltaTime;
-                
-                float normalizedTime = cameraShakeTimer / 0.4f; 
-                float shakeFactor = normalizedTime * normalizedTime * normalizedTime; 
-                
+
+                float normalizedTime = cameraShakeTimer / 0.4f;
+                float shakeFactor = normalizedTime * normalizedTime * normalizedTime;
+
                 // 1. Sharp dip downwards based on frontal impact
                 float frontalImpact = Mathf.Abs(cameraShakeDirection.z) + 0.5f;
                 float dipY = -cameraShakeIntensity * shakeFactor * frontalImpact;
-                
+
                 // 2. Sharp rotational roll towards the impact side
                 float sideImpact = cameraShakeDirection.x;
                 float dipTilt = (cameraShakeIntensity * 15f) * sideImpact * shakeFactor;
-                
+
                 // If it's purely a frontal crash with no side impact, add a slight random tilt
-                if (Mathf.Abs(sideImpact) < 0.1f) 
+                if (Mathf.Abs(sideImpact) < 0.1f)
                     dipTilt = (cameraShakeIntensity * 5f) * shakeFactor * (Mathf.PerlinNoise(Time.time, 0) > 0.5f ? 1 : -1);
-                
+
                 // 3. Organic rattle (much lighter now)
                 float rattle = (Mathf.PerlinNoise(Time.time * 30f, 0f) - 0.5f) * (cameraShakeIntensity * 0.2f) * shakeFactor;
 
                 desiredY += dipY + rattle;
-                currentTilt += dipTilt + (rattle * 5f); 
+                currentTilt += dipTilt + (rattle * 5f);
             }
 
             float smoothedY = Mathf.Lerp(cameraParent.localPosition.y, desiredY, Time.deltaTime * 15f);
@@ -229,6 +249,7 @@ namespace EasyPeasyFirstPersonController
 
             return Physics.SphereCast(origin, radius, Vector3.up, out _, checkDistance, groundMask, QueryTriggerInteraction.Ignore);
         }
+
         public bool CheckLedge(out Vector3 climbPosition)
         {
             climbPosition = Vector3.zero;
@@ -269,6 +290,5 @@ namespace EasyPeasyFirstPersonController
                 isInWater = false;
             }
         }
-
     }
 }

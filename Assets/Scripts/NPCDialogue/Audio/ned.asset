@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187eef24270cf2c43a96c6da47e7fa7d, type: 3}
+  m_Name: ned
+  m_EditorClassIdentifier: 
+  id: ned
+  dialogueTypingSoundClips:
+  - {fileID: 8300000, guid: 993f2a29a837b6e4fb0cd942ff46f106, type: 3}
+  - {fileID: 8300000, guid: 7a3c74ae0f380da4b85f97288f45fea8, type: 3}
+  - {fileID: 8300000, guid: 44af672815f137147b69f447bb59453d, type: 3}
+  - {fileID: 8300000, guid: 535f0fd068e963343b0ad630ed8bef48, type: 3}
+  - {fileID: 8300000, guid: fea208a86a23cf447919401552e9b49d, type: 3}
+  - {fileID: 8300000, guid: 2dd364831eee27f4f8ed5b88688f1d80, type: 3}
+  frequencyLevel: 3
+  minPitch: 0.86
+  maxPitch: 1.22
+  stopAudioSource: 0
