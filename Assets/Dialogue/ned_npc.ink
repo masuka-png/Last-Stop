@@ -1,5 +1,12 @@
-WHERE THE HELL DID MY TRUCK GO #speaker:RedneckNed #audio:ned
+-> main
 
-I NEED IT.
+==main==
 
-RELEASE MEEEEEEEEEEE
+#speaker:RedneckNed #audio:ned
+Why the hell did you guys arrest me for?
+
+I was just filling up my truck for christ sake
+
+
+
+-> END

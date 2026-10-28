@@ -1,1 +1,1 @@
-﻿{"inkVersion":20,"root":[["^WHERE THE HELL DID MY TRUCK GO ",{"#":"speaker:RedneckNed"},{"#":"audio:ned"},"\n","^I NEED IT.","\n","^RELEASE MEEEEEEEEEEE","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
+﻿{"inkVersion":20,"root":[[{"->":"main"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"main":[{"#":"speaker:RedneckNed"},{"#":"audio:ned"},"^Why the hell did you guys arrest me for?","\n","^I was just filling up my truck for christ sake","\n","end",{"#f":1}],"#f":1}],"listDefs":{}}

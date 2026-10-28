@@ -42,7 +42,7 @@ public class door : MonoBehaviour
                 AudioSource doorSound = hit.collider.gameObject.GetComponent<AudioSource>();
                 Debug.Log("looking at door");
 
-                //intText.SetActive(true);
+                
 
 
                 if (Input.GetKeyDown(KeyCode.E))
@@ -81,7 +81,7 @@ public class door : MonoBehaviour
 
             else
             {
-                Debug.Log("Not looking at door");
+                
                 //intText.SetActive(false);
             }
         }
