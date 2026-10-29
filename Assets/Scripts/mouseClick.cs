@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class mouseClick : MonoBehaviour, IPointerClickHandler
+public class mouseClick : MonoBehaviour
 {
-    public string sceneName;
+    public string newSceneName;
 
-    public void OnPointerClick(PointerEventData eventdata)
+    private void OnMouseDown()
     {
-        SceneManager.LoadScene(sceneName);
-        Debug.Log("YO");
+        SceneManager.LoadScene(newSceneName);
     }
 }
