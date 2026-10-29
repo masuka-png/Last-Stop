@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Interragation.unity
     guid: 2a5839ad53ef41b4789112f0a5afe4e9
   - enabled: 1
+    path: Assets/Scenes/PrecinctLevel.unity
+    guid: a8497d6ce491e144fba74927016a4c90
+  - enabled: 1
     path: Assets/PrecinctScene2.unity
     guid: 933aab0741af7b2418187717da28647e
   m_configObjects:
