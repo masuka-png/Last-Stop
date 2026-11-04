@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class DialogueManager : MonoBehaviour
     private const string AUDIO_TAG = "audio";
 
     private DialogueVariables dialogueVariables;
+
+    public GameObject ExistingUI;
+
+    public string sceneName;
 
     private void Awake() 
     {
@@ -142,6 +147,7 @@ public class DialogueManager : MonoBehaviour
         displayNameText.text = "???";
         portraitAnimator.Play("default");
         layoutAnimator.Play("right");
+        ExistingUI.SetActive(false);
 
         ContinueStory();
     }
@@ -158,6 +164,15 @@ public class DialogueManager : MonoBehaviour
 
         // go back to default audio
         SetCurrentAudioInfo(defaultAudioInfo.id);
+        if (sceneName == "")
+        {
+            Debug.Log("No Scene Swap");
+        }
+
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 
     private void ContinueStory() 

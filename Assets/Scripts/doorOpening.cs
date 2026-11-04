@@ -8,7 +8,7 @@ public class door : MonoBehaviour
     public float interactionDistance;
 
 
-    //public GameObject intText;
+    public GameObject intText;
 
 
     public string doorOpenAnimName, doorCloseAnimName;
@@ -40,9 +40,9 @@ public class door : MonoBehaviour
 
 
                 AudioSource doorSound = hit.collider.gameObject.GetComponent<AudioSource>();
-                Debug.Log("looking at door");
 
-                
+                intText.SetActive(true);
+
 
 
                 if (Input.GetKeyDown(KeyCode.E))
@@ -82,14 +82,14 @@ public class door : MonoBehaviour
             else
             {
                 
-                //intText.SetActive(false);
+                intText.SetActive(false);
             }
         }
 
         else
         {
 
-            //intText.SetActive(false);
+            intText.SetActive(false);
         }
     }
 }
